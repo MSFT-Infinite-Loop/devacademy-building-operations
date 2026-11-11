@@ -1,52 +1,51 @@
-# Effort logging policy
+# Effort recording policy
 
-## Authority
+## Chosen model
 
-`docs/team/effort-log.csv` is the authoritative dated effort record. GitHub Project `Completed Hours` is a summary derived from eligible rows merged into `preview`.
+The project uses the GitHub-native option permitted by PRC-06:
 
-The required CSV header is:
+- structured comments on leaf issues preserve date, participant, package, activity, hours, and evidence;
+- the Project `Completed Hours` number field stores their verified eligible sum;
+- no repository effort CSV is maintained.
 
-```csv
-date,participant,work_item,package,activity,hours,evidence
-```
+## Project
 
-## Field rules
+- Repository: `naterac83/devacademy-building-operations`
+- Project owner: `naterac83`
+- Project number: `1`
+
+Resolve current Project and field IDs from GitHub rather than hardcoding GraphQL IDs.
+
+## Required entry fields
 
 | Field | Rule |
 |---|---|
-| date | Actual work date in `YYYY-MM-DD` |
-| participant | Agreed participant display name |
-| work_item | Most specific applicable leaf issue, formatted as `#<number>` |
-| package | Approved package or `Cross-cutting` for genuinely shared governance work |
-| activity | One of `design`, `code`, `test`, `review`, `docs`, `ops`, `meeting`, `learning` |
-| hours | Positive decimal actual hours; never inferred |
-| evidence | Accessible issue, PR, commit, workflow, reviewed document, or other direct evidence link |
+| Date | Actual work date in `YYYY-MM-DD` |
+| Participant | Agreed participant display name |
+| Work item | Most specific applicable leaf issue |
+| Package | Approved package or `Cross-cutting` for genuinely shared governance work |
+| Activity | One of `design`, `code`, `test`, `review`, `docs`, `ops`, `meeting`, `learning` |
+| Hours | Positive decimal actual hours supplied by the participant |
+| Evidence | Accessible PR, commit, review, workflow, issue, or reviewed document |
+| Eligibility | `Eligible` or a documented provisional reason |
 
-The team has not yet agreed a minimum time increment. Preserve the actual user-supplied decimal without silently rounding.
+The team has not agreed a minimum time increment. Preserve the actual user-supplied decimal without silently rounding.
 
 ## Leaf-item rule
 
-Log work against the most specific issue that describes it.
-
-- Do not repeat child hours on a parent.
-- Do not assign a parent's aggregate hours manually.
+- Record work against the most specific issue that describes it.
+- Never repeat child hours on a parent.
+- Leave parent `Completed Hours` empty.
 - Use sub-issue progress and Project reporting for parent visibility.
-- If an activity spans multiple leaf items, ask the participant to allocate actual time between them.
-- Do not divide time automatically.
+- If work spans items, the participant provides the actual allocation.
 
 ## Duplicate rule
 
-An exact duplicate row is invalid.
+An exact duplicate has the same date, participant, package, activity, hours, and evidence.
 
-Before appending, also inspect potential near-duplicates sharing the same:
+Before writing, also flag potential near-duplicates sharing the same date, participant, work item, activity, and evidence.
 
-- date;
-- participant;
-- work item;
-- activity;
-- evidence.
-
-Ask the participant whether a near-duplicate represents separate work. Never assume.
+Ask whether a near-duplicate represents separate work. Never assume.
 
 ## Evidence rule
 
@@ -61,51 +60,61 @@ Examples:
 - docs: documentation pull request or commit;
 - ops: repository setting evidence, workflow, deployment, or infrastructure pull request;
 - meeting: checked-in meeting notes with decisions and attendees;
-- learning: linked learning evidence plus an explanation of package relevance;
-- AI-assisted work: relevant PR or document plus the participant's truthful AI journal entry when required.
+- learning: linked learning evidence plus an explanation of package relevance.
 
-A GitHub Project item alone is not evidence that work occurred.
+A Project field or unverified claim alone is not evidence that work occurred.
+
+## Authorship
+
+The visible comment author provides additional audit evidence.
+
+When someone records effort for another participant:
+
+- identify both people in the comment;
+- require explicit confirmation from the participant whose hours are recorded;
+- never infer approval from silence.
 
 ## Learning limit
 
-Package-relevant learning may count only within the capstone limit. The skill reports learning hours separately and must not claim that the participant remains below the limit without calculating it from eligible merged rows.
+Package-relevant learning may count only within the capstone limit. Report learning hours separately and do not claim that a participant remains below the limit without calculating all eligible entries.
 
 ## Pre-kick-off effort
 
 Week 1 starts on 2026-11-15.
 
-Work performed earlier should be recorded accurately for auditability, but its eligibility toward the required total is unresolved until the jury confirms it.
+Work performed earlier is recorded for auditability but remains provisional until the jury confirms whether it counts.
 
 Until then:
 
-- show pre-kick-off rows separately;
-- exclude them from `Completed Hours`;
-- do not claim they count toward the minimum.
+- label it `Provisional - jury decision pending`;
+- exclude it from `Completed Hours`;
+- do not claim it toward the required total.
 
-## Branch and pull-request workflow
-
-Effort-log changes are repository changes and follow the same branch rules:
-
-1. Use the existing compliant work branch when practical.
-2. Otherwise branch from current `preview` as `docs/<alias>/<issue>-log-effort`.
-3. Open a focused pull request to `preview`.
-4. Require review and applicable checks.
-5. Squash-merge the normal pull request into `preview`.
-6. Synchronize Project `Completed Hours` only after the row is visible on `origin/preview`.
-
-Never commit the CSV directly to `preview` or `main`.
-
-## Project synchronization
+## Completed Hours
 
 For a leaf issue:
 
 ```text
-Completed Hours = sum of eligible, validated CSV rows for that issue on preview
+Completed Hours =
+  eligible effort entries
+  - superseded entries
+  + eligible correction entries
 ```
 
 Replace the Project value with the calculated total. Do not increment it blindly.
 
-Estimated Hours and Completed Hours have different meanings:
+Estimated Hours and Completed Hours remain distinct:
 
 - Estimated Hours: planned effort agreed during planning.
-- Completed Hours: verified actual effort derived from the CSV.
+- Completed Hours: verified actual effort derived from structured issue comments.
+
+## Corrections
+
+Preserve the original effort comment. Add a marker-tagged correction that:
+
+- links to the original comment;
+- explains why it is incorrect;
+- contains the complete corrected entry;
+- is included only once in the recalculated total.
+
+Never use an unexplained negative-hours entry.

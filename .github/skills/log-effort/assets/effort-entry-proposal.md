@@ -1,15 +1,15 @@
-# Effort entry proposal
+# Effort update proposal
 
 - **Mode:** Record / Sync / Correct
 - **Work item:** `<leaf issue number and link>`
 - **Participant:** `<agreed display name>`
+- **Authenticated GitHub user:** `<handle>`
 - **Package:** `<package>`
 
-## Proposed CSV entry
+## Proposed issue comment
 
-```csv
-date,participant,work_item,package,activity,hours,evidence
-<exact proposed row>
+```markdown
+<exact marker-tagged effort or correction comment>
 ```
 
 ## Verification
@@ -22,26 +22,27 @@ date,participant,work_item,package,activity,hours,evidence
 | Evidence supports activity | Verified / Missing / Unknown | |
 | Exact duplicate | None / Found | |
 | Near-duplicate | None / Review required | |
+| Authorship | Direct / On behalf with confirmation / Unverified | |
 | Pre-kick-off eligibility | Eligible / Provisional / Not applicable | |
-| Branch compliance | Verified / Action required | |
 
-## Repository plan
+## Completed Hours calculation
 
-- Branch:
-- CSV change:
-- Validation commands:
-- Commit:
-- Pull request:
-
-## Project synchronization
+| Entry | Hours | Included? | Reason |
+|---|---:|---|---|
+| | | | |
 
 - Current Completed Hours:
-- Eligible merged CSV total:
+- Calculated eligible total:
 - Proposed Completed Hours:
-- Synchronization timing:
+- Parent field unchanged: Yes / No
+
+## GitHub writes
+
+1. Comment:
+2. Project field:
 
 ## Blockers and unknowns
 
 -
 
-No file or GitHub write occurs until the user approves this exact proposal.
+No GitHub write occurs until the user approves this exact proposal.

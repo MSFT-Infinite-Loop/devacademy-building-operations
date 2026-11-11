@@ -75,7 +75,7 @@ The team must agree the final checklist. Proposed baseline:
 - Security, privacy, and accessibility impacts are addressed.
 - No unresolved Critical or High security finding is introduced without an approved exception.
 - AI assistance is disclosed and verified.
-- The linked work item, evidence, and effort log are updated.
+- The linked work item, structured effort entries, evidence, and `Completed Hours` are updated.
 
 ## Approval record
 

@@ -1,40 +1,38 @@
 ---
 name: log-effort
-description: "Use when: recording, validating, correcting, or synchronizing evidenced work hours for a GitHub issue; updating docs/team/effort-log.csv; or recalculating a Project item's Completed Hours."
-argument-hint: "record or sync, issue number, actual hours, and evidence"
+description: "Use when: recording, validating, correcting, or synchronizing evidenced work hours for a GitHub issue; adding a structured effort comment; or recalculating a Project item's Completed Hours."
+argument-hint: "record, sync, or correct; issue number; actual hours; evidence"
 user-invocable: true
 disable-model-invocation: false
 ---
 
 # Log Effort
 
-Record actual, evidence-backed effort against the most specific work item and synchronize its GitHub Project summary without double counting.
+Record actual, evidence-backed effort directly on the most specific GitHub issue and keep its Project `Completed Hours` synchronized without double counting.
 
 Read [the effort policy](./references/effort-policy.md) before proposing a change. Use [the proposal template](./assets/effort-entry-proposal.md) for every write.
 
+## Authoritative record
+
+A structured, marker-tagged comment on the leaf issue is the authoritative effort entry. The issue's `Completed Hours` field is the verified sum of its eligible, non-superseded effort comments.
+
+Do not use a repository CSV.
+
 ## Modes
 
-### Record
-
-Append one verified row to `docs/team/effort-log.csv` through a compliant feature branch and pull request.
-
-Recording a row does not immediately update the Project `Completed Hours` field. The CSV change must first be merged into `preview`.
-
-### Sync
-
-Read the authoritative CSV from `preview`, calculate the verified total for one leaf work item, and propose the corresponding Project `Completed Hours` update.
-
-Do not sync unmerged rows from a feature branch.
+- `record`: add one effort comment and update `Completed Hours`.
+- `sync`: recalculate `Completed Hours` from existing effort comments.
+- `correct`: add a correction that supersedes an inaccurate effort comment, then synchronize the total.
 
 ## Non-negotiable safeguards
 
 - Never infer hours from commits, diffs, chat duration, calendar time, timestamps, or elapsed tool execution.
-- Never create a journal entry or effort row describing work that did not occur.
+- Never describe work that did not occur.
 - Never duplicate child-item hours on a parent issue.
 - Never add the same effort entry twice.
-- Never commit directly to `preview` or `main`.
-- Never update `Completed Hours` from an unmerged effort entry.
-- Obtain explicit human confirmation immediately before file, commit, push, pull-request, or Project writes.
+- Never divide time between work items automatically.
+- Never edit or delete an existing effort comment to hide a correction.
+- Obtain explicit human confirmation immediately before issue-comment or Project-field writes.
 - Do not decide whether pre-kick-off effort counts toward the graded minimum unless an approved decision exists.
 
 ## Record procedure
@@ -51,140 +49,132 @@ Ask for every missing value:
 - actual hours;
 - evidence link.
 
-The user must supply actual hours. Do not suggest a value.
+The user must supply actual hours. Do not suggest or round a value.
 
 ### 2. Verify the target and evidence
 
-Read the issue and Project item. Confirm:
+Read the issue, its parent and sub-issues, comments, and Project fields. Confirm:
 
 - the issue exists and is the most specific applicable work item;
 - the participant and package do not contradict the approved Team Charter;
 - the activity is allowed by [the effort policy](./references/effort-policy.md);
 - the evidence exists and supports the claimed activity;
-- the row is not already in the CSV.
+- the entry does not already exist;
+- the authenticated GitHub user is the participant or is explicitly recording on their behalf.
 
-If package ownership is unresolved, use `Cross-cutting` only for genuinely cross-cutting work. Otherwise stop and ask.
+If work spans multiple leaf items, ask the participant to provide the actual allocation. Do not calculate it.
 
-### 3. Check pre-kick-off status
+### 3. Determine eligibility
 
-The official Week 1 start is 2026-11-15.
+Week 1 starts on 2026-11-15.
 
 For earlier work:
 
 - record it accurately for auditability;
-- mark its eligibility as unresolved in the proposal;
-- do not include it in `Completed Hours` or the graded-hours total until the jury decision is recorded.
+- mark it `Provisional - jury decision pending`;
+- exclude it from `Completed Hours` until the jury decision is recorded.
 
-Do not alter the CSV schema to encode eligibility without a team decision.
+For eligible work, mark it `Eligible`.
 
-### 4. Check the branch plan
+### 4. Build the structured comment
 
-Prefer adding the effort row to the same compliant branch and pull request as the work it evidences.
+Use this exact shape:
 
-If that branch is unavailable or already merged:
+```markdown
+<!-- devacademy-effort-entry:v1 -->
+### Effort entry
 
-1. fetch the remote;
-2. start from current `preview`;
-3. create `docs/<alias>/<issue>-log-effort`;
-4. append and validate the row;
-5. open a focused pull request to `preview`.
+| Field | Value |
+|---|---|
+| Date | `YYYY-MM-DD` |
+| Participant | Name |
+| Package | Package |
+| Activity | `activity` |
+| Hours | `decimal` |
+| Evidence | URL |
+| Eligibility | Eligible or provisional reason |
+```
 
-Never add effort directly on `preview` or `main`.
+If recording on behalf of someone else, add:
 
-### 5. Present and confirm the record proposal
+```markdown
+| Recorded by | `@github-handle` on behalf of Participant |
+```
+
+### 5. Calculate the proposed total
+
+Read every comment on the leaf issue containing `devacademy-effort-entry:v1`.
+
+- Exclude provisional entries.
+- Exclude entries superseded by a valid correction comment.
+- Sum eligible decimal hours exactly.
+- Compare the sum with the current `Completed Hours`.
+- Replace the field with the calculated total; never increment it blindly.
+
+Leave parent `Completed Hours` empty.
+
+### 6. Present and confirm
 
 Use [the proposal template](./assets/effort-entry-proposal.md). Show:
 
-- the exact CSV row;
-- duplicate-check result;
-- evidence verification;
-- branch and pull-request plan;
-- pre-kick-off eligibility;
-- confirmation that `Completed Hours` will not change yet.
+- the exact proposed comment;
+- evidence and duplicate checks;
+- eligibility;
+- included and excluded entries;
+- current and proposed `Completed Hours`;
+- every GitHub write that will occur.
 
-Use the available user-input tool to approve the exact row and write plan.
+Use the available user-input tool to approve the exact batch immediately before writing.
 
-### 6. Append and validate
+### 7. Write and verify
 
 After approval:
 
-1. append exactly one CSV row;
-2. preserve the existing header and rows;
-3. quote values using standard CSV rules;
-4. run:
+1. add the structured comment to the leaf issue;
+2. update only that issue's `Completed Hours`;
+3. read the comment and Project item again;
+4. confirm the comment exists once and the stored total is correct;
+5. report links and any partial failure explicitly.
 
-   ```text
-   python .github/skills/log-effort/scripts/validate_effort_log.py
-   python .github/skills/log-effort/scripts/test_validate_effort_log.py
-   ```
-
-5. inspect the diff for unrelated changes;
-6. commit using the repository convention and reference the issue;
-7. push and open or update the pull request only as approved.
-
-Do not check the PR's effort-recorded box until the row is present in that PR.
-
-### 7. Verify
-
-Read the CSV from the branch and the pull request. Confirm the exact approved row is present once and validation passed.
-
-Report that Project synchronization remains pending until merge into `preview`.
+If the comment succeeds but the Project update fails, preserve the comment and report the synchronization failure. Do not post a duplicate comment on retry.
 
 ## Sync procedure
 
-### 1. Read authoritative state
+Use `sync` to repair or verify a Project total without adding an effort entry.
 
-Fetch the remote and read `docs/team/effort-log.csv` from `origin/preview`, not from a feature branch.
+1. Read all marked effort and correction comments.
+2. Verify their structure and evidence.
+3. Calculate eligible, non-superseded hours.
+4. Show the old and proposed `Completed Hours`.
+5. Obtain explicit confirmation.
+6. Replace the field value.
+7. Read it again and verify.
 
-Run the validator and obtain eligible and provisional totals:
+Do not update a parent item.
 
-```text
-python .github/skills/log-effort/scripts/validate_effort_log.py --json --eligible-from 2026-11-15
+## Correction procedure
+
+Never edit or delete the original effort comment.
+
+Add a correction using this shape:
+
+```markdown
+<!-- devacademy-effort-correction:v1 -->
+### Effort correction
+
+| Field | Value |
+|---|---|
+| Supersedes | Original comment URL |
+| Reason | Verified correction reason |
+| Corrected date | `YYYY-MM-DD` |
+| Corrected participant | Name |
+| Corrected package | Package |
+| Corrected activity | `activity` |
+| Corrected hours | `decimal` |
+| Corrected evidence | URL |
+| Eligibility | Eligible or provisional reason |
 ```
 
-Exclude pre-kick-off rows while their eligibility remains unresolved.
+Then recalculate `Completed Hours`, excluding the superseded entry and including the correction when eligible.
 
-### 2. Compare Project state
-
-Read the issue's Project item and compare:
-
-- current `Completed Hours`;
-- calculated eligible CSV total;
-- current status and parent relationship.
-
-Never add the total to the existing value. Replace it with the authoritative calculated total.
-
-### 3. Present and confirm the sync proposal
-
-Show:
-
-- included CSV rows and evidence;
-- excluded or provisional rows;
-- calculated total;
-- old and proposed `Completed Hours`;
-- confirmation that the leaf item alone will be updated.
-
-Obtain explicit confirmation immediately before the Project write.
-
-### 4. Update and verify
-
-After approval:
-
-1. update only the leaf item's `Completed Hours`;
-2. read the Project item again;
-3. confirm the stored number matches the calculated total;
-4. leave parent totals unchanged.
-
-Surface partial or failed writes explicitly.
-
-## Corrections
-
-Never hide a correction by adding an offsetting negative row.
-
-Correct an inaccurate row through a reviewed CSV change that:
-
-- identifies the original row;
-- explains the reason in the pull request;
-- replaces or removes only the incorrect row;
-- reruns validation;
-- synchronizes `Completed Hours` after merge.
+Present and confirm the exact correction and field change before writing.
