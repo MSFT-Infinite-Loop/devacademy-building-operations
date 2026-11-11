@@ -21,10 +21,10 @@ Resolve current IDs and options from GitHub rather than hardcoding GraphQL IDs.
 | Package | Core or Advanced package classification |
 | Requirement IDs | Requirements traceability |
 | Estimated Hours | Planned total effort for the item |
-| Completed Hours | Summary of verified effort-log entries |
+| Completed Hours | Sum of eligible, non-superseded structured effort comments on the leaf issue |
 | Start date / Target date | Scheduling and roadmap |
 
-`Estimate` is a redundant template field and should not be used. The dated repository effort log is authoritative; `Completed Hours` is only a board summary.
+`Estimate` is a redundant template field and should not be used. Marker-tagged effort comments on leaf issues are authoritative; `Completed Hours` is their verified sum.
 
 ## Status gates
 
@@ -92,7 +92,7 @@ Useful evidence includes:
 - workflow-run and deployment links;
 - verified GitHub settings;
 - screenshots where required;
-- dated effort-log entries;
+- marker-tagged structured effort comments on the leaf issue;
 - confirmed communications after they were sent.
 
 Insufficient evidence includes:

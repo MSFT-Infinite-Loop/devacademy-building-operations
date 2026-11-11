@@ -42,7 +42,7 @@ Read:
 - the target issue, comments, sub-issues, assignees, and Project fields;
 - `docs/team/charter.md` and relevant ADRs or specifications;
 - linked pull requests, reviews, checks, commits, and workflow runs;
-- relevant evidence files, including `docs/team/effort-log.csv`.
+- marker-tagged effort and correction comments plus the current `Completed Hours`.
 
 Use the official requirements or an approved repository summary to interpret requirement IDs.
 
@@ -84,8 +84,9 @@ Also evaluate the repository Definition of Done. Do not select `Done` while any 
 
 For hours:
 
-- accept actual hours only when the user explicitly supplies them or matching dated effort-log entries exist;
-- calculate `Completed Hours` only from verified effort entries;
+- direct new effort recording to the repository Log Effort skill;
+- calculate `Completed Hours` only from eligible, non-superseded structured effort comments;
+- leave parent `Completed Hours` empty to avoid double counting;
 - never estimate actual hours from commits, diffs, elapsed time, or chat history.
 
 ### 5. Present a proposed update
