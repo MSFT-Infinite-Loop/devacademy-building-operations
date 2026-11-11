@@ -13,9 +13,11 @@ Repository-local AI customizations should make recurring engineering artifacts c
 - Never fabricate approvals, work history, evidence, tests, effort, or journal content.
 - Require human review before remote writes, releases, permissions, hosting, or jury communications.
 
-## Current pilot
+## Current pilots
 
 The [Feature Specification prompt](../../../.github/prompts/feature-spec.prompt.md) is the first pilot. A prompt is appropriate because it performs one focused task and is portable across current VS Code Copilot environments.
+
+The [Update Work Item skill](../../../.github/skills/update-work-item/SKILL.md) reviews acceptance evidence, branching, pull requests, Definition of Done, and Project fields before proposing an update. A skill is appropriate because the workflow is multi-step, uses bundled policy, and requires a human confirmation gate before remote writes.
 
 ## Proposed priority
 
