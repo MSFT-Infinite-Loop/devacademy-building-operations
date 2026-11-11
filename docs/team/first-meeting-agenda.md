@@ -62,7 +62,7 @@ Assign investigation owners and due dates for frontend framework, API style, dat
 
 ### 51-57 minutes: Week 1 and Week 2 actions
 
-Assign owners for the Charter, plan, board, M1-M7 epics, branch rules, CI skeleton, local environment, walking skeleton, effort log, AI journals, and first release.
+Assign owners for the Charter, plan, board, M1-M7 epics, branch rules, CI skeleton, local environment, walking skeleton, effort-recording workflow, AI journals, and first release.
 
 ### 57-60 minutes: read-back and close
 
