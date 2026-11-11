@@ -19,24 +19,25 @@ The [Feature Specification prompt](../../../.github/prompts/feature-spec.prompt.
 
 The [Update Work Item skill](../../../.github/skills/update-work-item/SKILL.md) reviews acceptance evidence, branching, pull requests, Definition of Done, and Project fields before proposing an update. A skill is appropriate because the workflow is multi-step, uses bundled policy, and requires a human confirmation gate before remote writes.
 
+The [Log Effort skill](../../../.github/skills/log-effort/SKILL.md) records marker-tagged evidence comments on leaf issues and synchronizes their `Completed Hours` without a duplicate repository log.
+
 ## Proposed priority
 
 1. User Story Creator
 2. ADR Creator
 3. Standard PR Creator
 4. AI Journal Entry
-5. Effort Log Entry
-6. Weekly Release PR
-7. Definition-of-Done Validator
-8. Work-Item Decomposition
-9. Test Plan/Case Generator
-10. Security Review
-11. Dependency and Licence Review
-12. Weekly Team Check-in
-13. Release Readiness
-14. Architecture/Documentation Consistency
-15. Incident/Post-mortem
-16. Acceptance/Evidence Audit
+5. Weekly Release PR
+6. Definition-of-Done Validator
+7. Work-Item Decomposition
+8. Test Plan/Case Generator
+9. Security Review
+10. Dependency and Licence Review
+11. Weekly Team Check-in
+12. Release Readiness
+13. Architecture/Documentation Consistency
+14. Incident/Post-mortem
+15. Acceptance/Evidence Audit
 
 Single focused tasks should use `.github/prompts/`. Multi-step workflows with bundled references may use `.github/skills/<name>/SKILL.md` after the team verifies skill discovery in every supported editor.
 
