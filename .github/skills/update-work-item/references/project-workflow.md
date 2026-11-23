@@ -2,10 +2,14 @@
 
 ## Repository and Project
 
-- Repository: `naterac83/devacademy-building-operations`
-- Project owner: `naterac83`
+- Repository: `MSFT-Infinite-Loop/devacademy-building-operations`
+- Project owner: `MSFT-Infinite-Loop`
 - Project number: `1`
 - Project title: `Infinite Loop Building Operations Platform` (provisional)
+
+The former user-owned Project is closed and must not be updated.
+
+The confirmed four-person scope includes FE, BE, DB, and OPS Core plus all four Advanced packages. Package ownership remains governed by the approved Team Charter.
 
 Resolve current IDs and options from GitHub rather than hardcoding GraphQL IDs.
 

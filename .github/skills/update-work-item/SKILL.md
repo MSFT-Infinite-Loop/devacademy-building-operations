@@ -140,3 +140,15 @@ Read the issue and Project item again. Verify:
 - the final state matches the approved proposal.
 
 Report links to the updated issue and evidence. Surface any partial or failed update explicitly.
+
+## Output
+
+Return:
+
+- current issue and Project state;
+- acceptance/evidence classification;
+- branch/PR/Definition-of-Done findings;
+- exact proposed update;
+- blockers and unknowns;
+- approved writes performed;
+- verified final issue/Project links and state.

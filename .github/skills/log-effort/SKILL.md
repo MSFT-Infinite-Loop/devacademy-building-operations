@@ -178,3 +178,15 @@ Add a correction using this shape:
 Then recalculate `Completed Hours`, excluding the superseded entry and including the correction when eligible.
 
 Present and confirm the exact correction and field change before writing.
+
+## Output
+
+Return:
+
+- mode and leaf work item;
+- exact effort or correction comment;
+- evidence, duplicate, authorship and eligibility checks;
+- included/excluded effort calculation;
+- current and proposed `Completed Hours`;
+- approved GitHub writes;
+- verified comment and Project links or synchronization failure.

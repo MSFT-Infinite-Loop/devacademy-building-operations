@@ -10,11 +10,13 @@ The project uses the GitHub-native option permitted by PRC-06:
 
 ## Project
 
-- Repository: `naterac83/devacademy-building-operations`
-- Project owner: `naterac83`
+- Repository: `MSFT-Infinite-Loop/devacademy-building-operations`
+- Project owner: `MSFT-Infinite-Loop`
 - Project number: `1`
 
 Resolve current Project and field IDs from GitHub rather than hardcoding GraphQL IDs.
+
+The former user-owned Project is closed and must not be updated.
 
 ## Required entry fields
 
