@@ -5,7 +5,6 @@
 - [Team Charter draft](team/charter.md)
 - [Project plan draft](team/plan.md)
 - [Team decision register](team/decision-register.md)
-- [First meeting agenda](team/first-meeting-agenda.md)
 
 Effort is recorded against leaf GitHub issues using structured comments. Each issue's `Completed Hours` field is the verified eligible total.
 

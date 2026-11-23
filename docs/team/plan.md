@@ -36,4 +36,4 @@ TBD after package ownership and initial architecture decisions.
 
 | Date | What changed | Why | Approved by |
 |---|---|---|---|
-| 2026-11-10 | Created initial draft | Prepare for the first team meeting | Pending |
+| 2026-11-10 | Created initial draft | Prepare project inception | Pending |
