@@ -1,7 +1,7 @@
 # Team Charter: TBD
 
 - **Status:** Draft for team discussion
-- **Last updated:** 2026-11-10
+- **Last updated:** 2026-11-23
 - **Approval:** Not yet approved
 
 This document records team agreements after all members have reviewed them. A populated field is not evidence of agreement until the approval record is complete.
@@ -75,7 +75,7 @@ The team must agree the final checklist. Proposed baseline:
 - Security, privacy, and accessibility impacts are addressed.
 - No unresolved Critical or High security finding is introduced without an approved exception.
 - AI assistance is disclosed and verified.
-- The linked work item, evidence, and effort log are updated.
+- The linked work item, structured effort evidence, and `Completed Hours` are updated.
 
 ## Approval record
 

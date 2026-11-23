@@ -1,7 +1,7 @@
 # Project plan: TBD
 
 - **Status:** Draft
-- **Last updated:** 2026-11-10
+- **Last updated:** 2026-11-23
 - **Kick-off date:** TBD
 - **Weekly release day:** TBD
 
@@ -27,8 +27,8 @@ TBD after package ownership and initial architecture decisions.
 
 | Risk | Impact | Mitigation | Owner |
 |---|---|---|---|
-| Repository is personally owned | Jury cannot receive a distinct read-only collaborator role | Confirm accepted access model or move to an organization | Carlos |
-| Requirements pack is derived and may become stale | Incorrect implementation or assessment evidence | Verify graded decisions against the latest official source | TBD |
+| The GitHub organization is on Free | Private `main` and `preview` cannot be protected as required by GIT-06 | Resolve through issue #4 by upgrading the organization plan or selecting another approved enforcement mechanism | Carlos |
+| The requirements pack is derived | A conflict with the official source could misdirect implementation | Keep provenance explicit; the official source wins conflicts; resynchronize through a dedicated reviewed task | Team |
 | Package ownership is unresolved | Work may start without accountable owners | Decide and record ownership in Week 1 | Team |
 | Technology decisions are unresolved | Premature scaffolding may constrain the architecture | Use timeboxed investigations and ADRs | Team |
 
