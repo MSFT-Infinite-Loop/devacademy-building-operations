@@ -6,7 +6,7 @@ Private monorepo for the DevAcademy 2026-2027 Building Operations Platform capst
 
 This repository is in pre-inception setup.
 
-- Team: Carlos Natera, Didier Gbenou, and Petar Ivanov (provisional until the Team Charter is approved)
+- Team: Carlos Natera, Didier Gbenou, Petar Ivanov, and George Neagoe (provisional until the Team Charter is approved)
 - Repository workflow: GitHub-first proposal, pending team confirmation
 - Package ownership: TBD
 - Advanced packages: TBD

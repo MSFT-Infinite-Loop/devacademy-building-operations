@@ -10,16 +10,16 @@ This document records team agreements after all members have reviewed them. A po
 
 | Member | GitHub handle | Core package ownership | Advanced package ownership | Usual availability |
 |---|---|---|---|---|
-| Carlos Natera | TBD | TBD | TBD | TBD |
-| Didier Gbenou | TBD | TBD | TBD | TBD |
-| Petar Ivanov | TBD | TBD | TBD | TBD |
+| Carlos Natera | naterac83 | TBD | TBD | TBD |
+| Didier Gbenou | didiergbenou-ms | TBD | TBD | TBD |
+| Petar Ivanov | petarivanov-msft | TBD | TBD | TBD |
+| George Neagoe | geneagoedev | TBD | TBD | TBD |
 
 ## Team scope
 
-- Team size: 3 (provisional until confirmed at the meeting)
+- Team size: 4
 - Required Core packages: FE, BE, DB, OPS
-- Selected Advanced package 1: TBD
-- Selected Advanced package 2: TBD
+- Required Advanced packages: FE Advanced, BE Advanced, DB Advanced, OPS Advanced
 - Product name: TBD
 
 ## Goals and learning objectives
@@ -29,6 +29,7 @@ This document records team agreements after all members have reviewed them. A po
 | Carlos Natera | TBD | TBD |
 | Didier Gbenou | TBD | TBD |
 | Petar Ivanov | TBD | TBD |
+| George Neagoe | TBD | TBD |
 
 ## Communication and availability
 
@@ -84,3 +85,4 @@ The team must agree the final checklist. Proposed baseline:
 | Carlos Natera | Pending | TBD |
 | Didier Gbenou | Pending | TBD |
 | Petar Ivanov | Pending | TBD |
+| George Neagoe | Pending | TBD |

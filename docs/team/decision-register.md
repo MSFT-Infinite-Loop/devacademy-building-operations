@@ -19,9 +19,9 @@ Do not treat a provisional or open entry as approved.
 
 | ID | Decision | Status | Current position | Evidence or follow-up |
 |---|---|---|---|---|
-| D-01 | Team size and members | Provisional | Carlos Natera, Didier Gbenou, and Petar Ivanov; confirm in the Team Charter | `docs/team/charter.md` |
+| D-01 | Team size and members | Decided | Four members: Carlos Natera, Didier Gbenou, Petar Ivanov, and George Neagoe (`geneagoedev`) | `docs/team/charter.md` and organization membership |
 | D-02 | Core and Advanced package ownership | Open | TBD | GitHub issue #2 |
-| D-03 | Two Advanced packages for a three-person team | Open | TBD | GitHub issue #2 |
+| D-03 | Advanced package scope | Decided | Four-person scope requires FE Advanced, BE Advanced, DB Advanced, and OPS Advanced | 05 §3 and GitHub issue #2 |
 | D-04 | Repository and board host | Decided | Private GitHub organization `MSFT-Infinite-Loop`, organization repository, and organization Project | GitHub issue #4 |
 | D-05 | Product name and branding | Provisional | `Infinite Loop Building Operations Platform` | Confirm in the Team Charter |
 | D-06 | Frontend framework | Open | Next.js 16+ or TanStack Start 1.x | Frontend ADR |

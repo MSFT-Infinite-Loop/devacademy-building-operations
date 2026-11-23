@@ -9,7 +9,7 @@
 
 - Inputs and approval process for the Team Charter
 - Core package ownership
-- Two Advanced package selections
+- Ownership of all four required Advanced packages
 - GitHub-first platform decision and access actions
 - Working agreements and release-captain rotation
 - ADR investigation owners
@@ -30,7 +30,7 @@ Each participant shares strengths, learning objectives, first and second package
 ### 13-27 minutes: package ownership
 
 - Assign primary owners for FE, BE, DB, and OPS Core.
-- Select two Advanced packages and primary owners.
+- Assign primary owners for FE Advanced, BE Advanced, DB Advanced, and OPS Advanced.
 - Agree how each participant will deliver a vertical slice and review outside their track.
 
 ### 27-34 minutes: platform and access
@@ -74,7 +74,7 @@ Read back each decision and action. Every action must have an owner and deadline
 |---|---|---|---|---|
 | Team name | TBD | Open | Team | TBD |
 | Package ownership | TBD | Open | Team | TBD |
-| Advanced packages | TBD | Open | Team | TBD |
+| Advanced package ownership | All four Advanced packages are in scope; owners TBD | Open | Team | TBD |
 | Repository and board | GitHub proposed | Provisional | Team | TBD |
 | Working agreements | TBD | Open | Team | TBD |
 | ADR investigations | TBD | Open | Team | TBD |

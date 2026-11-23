@@ -13,7 +13,7 @@
 | Week 2 | Walking skeleton and `v0.1.0` | FE, BE, DB, OPS | TBD | Not started |
 | Weeks 3-5 | Foundations | M1-M3 and early vertical slices | TBD | Not started |
 | Weeks 6-8 | Core workflows | M4-M7 and both signature scenarios | TBD | Not started |
-| Weeks 9-10 | Advanced depth and hardening | Selected Advanced packages | TBD | Not started |
+| Weeks 9-10 | Advanced depth and hardening | FE, BE, DB, and OPS Advanced packages | TBD | Not started |
 | Week 11 | Stabilization and evidence audit | Team | TBD | Not started |
 | Week 12 | `v1.0.0` and submission | Team | TBD | Not started |
 
