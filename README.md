@@ -50,9 +50,9 @@ The requirements prescribe short-lived branches into `preview`, followed by week
 
 ## Requirements material
 
-A colleague-provided derived requirements pack has been reviewed locally and its validator passes all 234 indexed requirement rows. It has not been added to this repository because:
+The canonical repository working specification is in [`docs/capstone-spec/`](docs/capstone-spec/README.md).
 
-- the official source remains authoritative;
-- the pack contains team-specific state that needs updating;
-- inclusion of the derived internal summary should be confirmed with the team and jury;
-- personal contact details must be reviewed before import.
+- The official DevAcademy requirements remain the conflict-resolution authority.
+- [`docs/capstone-spec/PROVENANCE.md`](docs/capstone-spec/PROVENANCE.md) records source version, authorship and repository adaptations.
+- [`docs/team/decision-register.md`](docs/team/decision-register.md) records live team choices and unresolved decisions.
+- Requirement IDs, levels and scopes must remain traceable in issues, specifications, ADRs and pull requests.
