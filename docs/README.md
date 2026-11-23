@@ -27,6 +27,7 @@ Accepted ADRs will live in `docs/adr/`. Feature specifications will live in `doc
 
 - [AI journal entry template](templates/ai-journal-entry.md)
 - [Repository AI workflow policy](ai/skill-pack/README.md)
+- [Plain-English AI skills user guide](ai/skill-pack/user-guide.md)
 
 Each participant's journal location is TBD and must be agreed in the Team Charter.
 

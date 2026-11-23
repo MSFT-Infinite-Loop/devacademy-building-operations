@@ -10,8 +10,8 @@ Create or update one feature specification under `docs/specs/` using the [featur
 Before writing:
 
 1. Identify the feature, users, work item, and requirement IDs.
-2. Read the relevant official requirements or approved repository summary.
-3. Check the Team Charter and accepted ADRs for applicable decisions.
+2. Read `docs/capstone-spec/README.md`, relevant topic files, and `requirements.csv`.
+3. Check `docs/team/decision-register.md`, the Team Charter, and accepted ADRs.
 4. Mark missing facts as `TBD` or open questions; do not invent decisions.
 
 The specification must include:
