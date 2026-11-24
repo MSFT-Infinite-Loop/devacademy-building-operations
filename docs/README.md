@@ -10,6 +10,7 @@
 ## Architecture and specifications
 
 - [ADR template](templates/adr-template.md)
+- [ADR-001: Hosting and deployment strategy (Azure Container Apps + ACR)](adr/ADR-001-hosting-and-deployment.md)
 - [Feature specification template](templates/feature-spec-template.md)
 
 Accepted ADRs will live in `docs/adr/`. Feature specifications will live in `docs/specs/`.
