@@ -92,31 +92,13 @@ Until then:
 - exclude it from `Completed Hours`;
 - do not claim it toward the required total.
 
-## Completed Hours
+## Ledger calculation
 
-For a leaf issue:
+Use this procedure on one leaf issue for `record`, `sync`, and `correct`:
 
-```text
-Completed Hours =
-  eligible effort entries
-  - superseded entries
-  + eligible correction entries
-```
+1. Read all pages of comments. Match the exact effort-entry or effort-correction marker and validate the comment's fields, author or authorized delegate, evidence, and eligibility. Use each comment ID at most once.
+2. Start one record per original entry. In posting order, apply each correction only to the current effective comment it links to on the same issue, for the same participant. A correction replaces the whole record; it is not extra hours. Keep the superseded comments for audit. In a proposal, include the prospective entry or correction once, after existing comments.
+3. Sum positive decimal hours from the active eligible records only. Exclude provisional and superseded records and show why. If an entry or correction cannot be verified or linked unambiguously, stop without publishing a total; report the affected comments for review.
+4. Compare the total with the leaf's `Completed Hours`. Replace it only with the approved recomputed total; never increment it blindly or roll it up to a parent. Do not use `Estimated Hours` or apply the participant-level learning cap separately per issue.
 
-Replace the Project value with the calculated total. Do not increment it blindly.
-
-Estimated Hours and Completed Hours remain distinct:
-
-- Estimated Hours: planned effort agreed during planning.
-- Completed Hours: verified actual effort derived from structured issue comments.
-
-## Corrections
-
-Preserve the original effort comment. Add a marker-tagged correction that:
-
-- links to the original comment;
-- explains why it is incorrect;
-- contains the complete corrected entry;
-- is included only once in the recalculated total.
-
-Never use an unexplained negative-hours entry.
+Example: an original 2-hour entry corrected to 1 hour, followed by a separate 0.5-hour entry, totals 1.5 hours in every mode.
