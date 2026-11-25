@@ -1,9 +1,11 @@
 # ADR-00N: Decision title
 
-- **Status:** Proposed
+- **Status:** Proposed | Accepted | Superseded
 - **Date:** YYYY-MM-DD
 - **Author(s):** TBD
 - **Requirement IDs:** TBD
+- **Supersedes:** None | ADR-00N
+- **Superseded by:** None | ADR-00N
 
 ## Context
 

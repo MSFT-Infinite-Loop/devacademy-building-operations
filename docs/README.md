@@ -4,8 +4,17 @@
 
 - [Team Charter draft](team/charter.md)
 - [Project plan draft](team/plan.md)
-- [First meeting agenda](team/first-meeting-agenda.md)
-- [Effort log](team/effort-log.csv)
+- [Team decision register](team/decision-register.md)
+
+Effort is recorded against leaf GitHub issues using structured comments. Each issue's `Completed Hours` field is the verified eligible total.
+
+## Requirements
+
+- [Canonical capstone working specification](capstone-spec/README.md)
+- [Specification provenance](capstone-spec/PROVENANCE.md)
+- [Machine-readable requirement index](capstone-spec/requirements.csv)
+
+The official DevAcademy requirements remain the conflict-resolution authority.
 
 ## Architecture and specifications
 
