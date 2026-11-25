@@ -80,13 +80,12 @@ Classify every acceptance check:
 - `Unknown`: available information is insufficient.
 - `Not applicable`: justified for this item.
 
-Also evaluate the repository Definition of Done. Do not select `Done` while any mandatory check is Missing or Unknown.
+Apply the [capstone Definition of Done](../../../docs/capstone-spec/14-process-git-planning.md), section 7, and any approved Team Charter additions. For applicable product work, require verification on Preview and logging or telemetry for new flows, in addition to review, merge, CI, tests, security, accessibility, documentation, and effort evidence. Explain any `Not applicable` item; do not use that label to waive a requirement. Do not select `Done` while any mandatory check is Missing or Unknown.
 
 For hours:
 
-- direct new effort recording to the repository Log Effort skill;
-- calculate `Completed Hours` only from eligible, non-superseded structured effort comments;
-- leave parent `Completed Hours` empty to avoid double counting;
+- use Log Effort for recording, correcting, or synchronizing hours; do not recalculate or edit `Completed Hours` here;
+- if Log Effort is unavailable and effort evidence is uncertain, report it as `Unknown` rather than guessing;
 - never estimate actual hours from commits, diffs, elapsed time, or chat history.
 
 ### 5. Present a proposed update
@@ -115,18 +114,18 @@ The confirmation must name:
 - every Project field change;
 - the resulting status and open/closed state.
 
-If the user changes the proposal, reassess affected gates before asking again.
+After confirmation, re-read the issue state and affected fields or content. If the evidence or proposed changes are stale, stop and show a fresh proposal for approval.
 
 ### 7. Apply minimal changes
 
-After approval:
+Apply only the approved changes:
 
 - preserve unrelated issue text and formatting;
 - select only verified acceptance checks;
 - add evidence without duplicating existing links;
-- update only approved Project fields;
-- let the configured `Done` workflow close the issue;
-- leave owner, estimates, and hours unchanged unless explicitly approved.
+- update only approved Project fields; leave owner and estimates unchanged unless explicitly approved;
+- **Reopen:** if the issue is closed, reopen the GitHub issue itself first. Verify it is open and allow the configured reopen workflow to set `Ready`. If `In progress` was approved, apply it only after that workflow has run and the start gate is met. If reopening or automation does not complete as expected, report the partial result rather than moving a closed issue's card or silently taking another action;
+- **Complete:** save and verify the approved evidence first, then set `Done` last so the configured workflow can close the issue. Verify both issue and Project states; report any mismatch.
 
 For a parent issue, do not move it to `Done` until all required sub-issues are complete or an approved exception is documented.
 

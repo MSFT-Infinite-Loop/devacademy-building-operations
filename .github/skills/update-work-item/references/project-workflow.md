@@ -38,7 +38,7 @@ Resolve current IDs and options from GitHub rather than hardcoding GraphQL IDs.
 | Ready -> In progress | An assignee is identified. If repository changes are expected, a compliant branch exists or its creation is explicitly approved. |
 | In progress -> In review | Deliverables are ready for verification. Repository changes have a linked PR targeting `preview`; relevant checks and evidence are available. |
 | In review -> Done | Acceptance criteria and Definition of Done are verified; required review and checks passed; changes are merged appropriately; documentation, AI disclosure, evidence, and effort are current. |
-| Any -> Backlog | Work is intentionally decommitted or requires material refinement; explain why. |
+| Open item -> Backlog | Work is intentionally decommitted or requires material refinement; explain why. Reopen a closed issue explicitly before changing its board status. |
 | Closed/Done -> Ready | Work was reopened and is defined but not actively being changed. |
 | Closed/Done -> In progress | Work was reopened and active corrective work has begun on a compliant branch when needed. |
 
@@ -64,7 +64,7 @@ Automation does not verify acceptance criteria. Override an incorrect automated 
    - another approved type such as `test`, `refactor`, `chore`, or `spike`
 3. Keep the branch ideally at or below three working days.
 4. Open a focused PR targeting `preview`.
-5. Link the work item without closing a broader parent issue prematurely.
+5. Link the work item explicitly and use `Refs #<number>` in the PR and squash message. Closing keywords do not close issues on merge into non-default `preview` and may close them later on `main`. Complete the issue separately after verifying its Definition of Done.
 6. Require CI and human review.
 7. Squash-merge the normal PR into `preview`.
 
