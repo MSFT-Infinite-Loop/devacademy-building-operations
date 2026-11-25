@@ -74,10 +74,11 @@ The team is now four people, and BE Advanced is mandatory for a team of four, so
    - The interactive UI (Scalar or Swagger UI, one of them) is mapped only in the Development environment, never in Release.
 5. **Creation:** `TypedResults.Created(location, body)`.
 6. **Concurrency contract (BE-A01):** responses for work orders, leases and statements carry an `ETag` derived from the database concurrency token; updates require `If-Match`. A stale write returns `412 Precondition Failed`, and a missing `If-Match` returns `428 Precondition Required`. Every such conflict is returned as ProblemDetails. The token mechanism depends on the database ADR (for PostgreSQL the candidates are the `xmin` system column or an explicit version column). The contract is described in the OpenAPI document and covered by stale-write tests.
-7. **Idempotency (BE-A03):** payment endpoints accept an `Idempotency-Key` header. A repeated key returns the original result without a second effect. The key store and its rules are defined in the jobs, outbox and real-time ADR.
+7. **Idempotency (BE-A03):** payment endpoints accept an `Idempotency-Key` header. A repeated key with the same request returns the original result without a second effect. The same key with a different request (for example a different payment amount) is rejected with `422`, not answered with the earlier confirmation, and a repeat that arrives while the first request is still being processed gets `409`. The key store and its rules are defined in the jobs, outbox and real-time ADR.
 8. **Rate limiting (BE-A06):** `429` responses are ProblemDetails with a `Retry-After` header.
 9. **Cache headers:** authenticated responses are sent with `Cache-Control: no-store` unless an endpoint is explicitly designated cacheable, so the Next.js data cache or any proxy cannot share personalised responses between users.
 10. **Consumers:** the Next.js server and the browser consume the same API and the same ProblemDetails shape, including `412`, `428` and `429` with `Retry-After`. A typed client generated from the committed OpenAPI document is proposed to the frontend owner, so contract changes show up as build errors.
+11. **API conventions (ARC-08):** the shared rules for naming, versions, pagination, filtering and sorting, errors, ETag and idempotency headers, dates and money are drafted in [`docs/architecture/api-conventions.md`](../architecture/api-conventions.md). This ADR decides the style; that document holds the detailed conventions, which the team extends during implementation.
 
 ### Open points (tracked in follow-up actions, not decided here)
 
@@ -108,6 +109,7 @@ The team is now four people, and BE Advanced is mandatory for a team of four, so
 5. Verify during implementation (**not yet done**): ETag and `If-Match` over a database concurrency token, returning `412` on a stale write, and idempotent replay with `Idempotency-Key`. Confirm with the database ADR owner which concurrency mechanism is available.
 6. Background jobs, the outbox and real-time push (ARC-09, BE-C08, BE-A03, BE-A04) are proposed in `ADR-Jobs-Outbox-and-Real-Time-Push.md`. The `Idempotency-Key` store and replay rules are defined there.
 7. Data access and migrations (EF Core with Npgsql, one shared process for applying schema changes agreed with the database owner, BE-C06) are not decided here and are proposed as a separate ADR.
+8. Review and extend the API conventions draft with the frontend and database owners (identifier format, money representation, ProblemDetails `type` URIs).
 
 ## Evidence and verification
 
