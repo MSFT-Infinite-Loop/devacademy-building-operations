@@ -1,4 +1,4 @@
-# ADR-003: Frontend Framework
+# ADR-00N: Frontend Framework
 
 - **Status:** Proposed
 - **Date:** 2026-11-23
@@ -86,11 +86,21 @@ Both options can support the workflows that matter. TanStack Start's built-in UR
 
 Server-first does not mean waiting for every section. Dashboard widgets stream independently behind placeholders, and the browser renders the interactive floor map using API data. The Rendering Strategy Table will document each route's choice, including at least one personalized server-rendered route and one cached or prerendered route (`FE-C02`, `FE-A01`).
 
+### API data and session boundary
+
+**Use a typed API client** for frontend calls, preferably generated from the backend's versioned OpenAPI document when available (`FE-C04`). Server-rendered reads use the signed-in user's session, not a shared service identity, so the API still authorizes each request. Never store access tokens in browser storage (`ARC-05`).
+
+Keep personalized pages and their API responses out of shared Next.js caches. Use shared caching only for content agreed safe to share with the API and caching owners. The [API-style](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/pull/20) and [backend caching](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/pull/22) proposals inform this boundary without choosing the frontend cache implementation.
+
+The [Authentication and Authorization proposal](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/pull/23) covers session cookies and protection against forged requests. Its proposed single public address for the web app and API still needs confirmation in the [Hosting and Deployment ADR](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/pull/19). This ADR does not choose how cookies are forwarded or how that routing is provided.
+
 ### Refreshing already-open views
 
 **After an ordinary successful save, refresh the current view in place without reloading the browser tab. Use targeted refreshes for live work-order updates and the notification badge.** This avoids tracking every dependency on simple pages while keeping frequent updates from redoing unrelated work. Add other targeted cases only when there is a clear benefit.
 
-Define affected data once per live feature and use the same rule for a confirmed local edit and an authorized live update from another user's edit. For example, when the 4B work order moves from **Assigned** to **In Progress**, refresh the affected work-order lists and counts so the card drops out of the **Assigned** list, not just changes its label. An incoming notification refreshes the badge without refreshing the page underneath it. Use the required polling fallback when live updates are unavailable (`FE-A03`). Revalidate affected frontend cache entries when needed; refreshing a view alone does not invalidate its underlying caches (`FE-A02`).
+Define affected data once per live feature and use the same rule for a confirmed local edit and an authorized live update from another user's edit. For example, when the 4B work order moves from **Assigned** to **In Progress**, refresh the affected work-order lists and counts so the card drops out of the **Assigned** list, not just changes its label. An incoming notification refreshes the badge without refreshing the page underneath it. If the live connection drops, poll for updates while retrying the connection with increasing delays. On reconnect, fetch current data to reconcile the affected views rather than assuming no events were missed (`FE-A03`). Revalidate affected frontend cache entries when needed; refreshing a view alone does not invalidate its underlying caches (`FE-A02`).
+
+The work-order board can show a move before the API confirms it. If the API rejects the move because the order has changed, undo the move and let the user refresh or reconcile with the current state (`FE-A04`). If the API-style proposal is accepted, the edit sends the version it was based on using `If-Match`, and a stale edit returns `412 Precondition Failed`.
 
 ### Component library
 
@@ -108,7 +118,7 @@ Define affected data once per live feature and use the same rule for a confirmed
 - The requirements and maintainer documentation support the comparison: [Next.js streaming](https://nextjs.org/docs/app/getting-started/fetching-data#with-suspense), [typed links](https://nextjs.org/docs/app/api-reference/config/next-config-js/typedRoutes), and [self-hosting](https://nextjs.org/docs/app/guides/self-hosting); [TanStack Start's stable release](https://tanstack.com/blog/tanstack-start-1-0), [URL filter validation](https://tanstack.com/router/latest/docs/framework/react/guide/search-params), and [deferred loading](https://tanstack.com/router/latest/docs/framework/react/guide/deferred-data-loading).
 - The component comparison is based on [shadcn/ui's source distribution](https://ui.shadcn.com/docs), [Next.js setup](https://ui.shadcn.com/docs/installation/next), and [theming](https://ui.shadcn.com/docs/theming), and [Fluent UI React v9's setup](https://fluent2.microsoft.design/get-started/develop) and [table and data grid documentation](https://github.com/microsoft/fluentui/blob/master/packages/react-components/react-table/library/README.md).
 - **Pending — initial rendering:** In a production-style container setup with synthetic data, verify that the server-rendered response for a bookmarked work queue includes only the viewer's authorized rows for the selected filters, without relying on a browser-side fetch for the initial list. Check that a second user never sees the first user's data. Stream a deliberately delayed dashboard widget, verify it fills in independently, and compare time to first byte (TTFB) and largest contentful paint (LCP) with a non-streamed version (`FE-A01`).
-- **Pending — refresh:** Verify that an ordinary save updates the current view without a full reload. Use two authorized sessions to verify that a work-order transition updates the affected lists and counts and that an incoming notification updates the badge without refreshing the route. Disable the live connection and verify that those updates still arrive through polling (`FE-A03`).
+- **Pending — refresh:** Verify that an ordinary save updates the current view without a full reload. Use two authorized sessions to verify that a work-order transition updates the affected lists and counts and that an incoming notification updates the badge without refreshing the route. Verify polling while disconnected, reconciliation after reconnecting, and rollback of an optimistic move rejected by the API (`FE-A03`, `FE-A04`).
 - **Pending — shared controls:** Check the work queue and assignment dialog in both themes, including first-render styling, keyboard focus, and screen-reader labels. This is an early check, not a substitute for the required Core accessibility verification (`FE-C08`). No prototype or benchmark has been run.
 
 ## AI assistance
