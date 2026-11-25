@@ -10,6 +10,7 @@
 ## Architecture and specifications
 
 - [ADR template](templates/adr-template.md)
+- [Database Engine and Data Model ADR (Proposed)](adr/ADR-Database-Engine-and-Data-Model.md)
 - [Feature specification template](templates/feature-spec-template.md)
 
 Accepted ADRs will live in `docs/adr/`. Feature specifications will live in `docs/specs/`.
