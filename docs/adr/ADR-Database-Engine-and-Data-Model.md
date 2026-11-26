@@ -1,8 +1,8 @@
-# ADR-001: Database Engine, Data Model and Persistence Conventions
+# ADR-00N: Database Engine, Data Model and Persistence Conventions
 
 - **Status:** Proposed
 - **Date:** 2026-11-26
-- **Author(s):** TBD
+- **Author(s):** George Neagoe
 - **Requirement IDs:** DB-C01, DB-C02, DB-C03, DB-C04, DB-C07, DB-A01, DB-A02, DB-A06, M3-04, M5-02, M5-06, M5-07, M5-09, ARC-07
 - **Supersedes:** None
 - **Superseded by:** None
@@ -15,7 +15,7 @@ The domain has strongly related records, concurrent updates, date-effective leas
 
 The four-person team must deliver all Core and Advanced packages. This makes historical data, reporting and retention relevant to the model. Hosting Preview and Release is also required, but the choice of hosting service belongs in the separate Hosting ADR. Team experience with PostgreSQL remains a consideration for human review; it is not assumed.
 
-This document consolidates the database engine and logical modeling proposal with the persistence conventions previously drafted in `docs/adr/001-persistence-and-database-conventions.md`. It is the canonical database ADR for the Building Operations Platform.
+This document consolidates the database engine and logical modeling proposal with shared persistence conventions. It is the canonical database ADR for the Building Operations Platform.
 
 It proposes PostgreSQL, a relational model, and shared migration, identifier, timestamp, concurrency and seed conventions. EF Core and Npgsql are proposed candidates pending backend coordination and team review, not an approved stack. Hosting, the local container runtime and API authorization policy remain separate decisions. This is not a completed physical schema or full column-level data dictionary. Named migration and seed owners and reviewers remain subject to team confirmation.
 
@@ -247,6 +247,6 @@ These checks are implementation work, not reported results or an ADR acceptance 
 
 ## AI assistance
 
-GitHub Copilot drafted the options comparison, relational modeling proposal and relationship sketch, then revised the document using the supplied template and review feedback. This consolidation preserves the entity inventory and relationship sketch, incorporates persistence conventions from the separate ADR-001 draft, and distinguishes proposed backend integration from an approved stack. It also separates decision review from future implementation tests and clarifies conditional-update and representation-level ETag semantics.
+GitHub Copilot drafted the options comparison, relational modeling proposal and relationship sketch, then revised the document using the supplied template and review feedback. This consolidation preserves the entity inventory and relationship sketch, incorporates persistence conventions from the earlier draft, and distinguishes proposed backend integration from an approved stack. It also separates decision review from future implementation tests and clarifies conditional-update and representation-level ETag semantics.
 
 The supplied human feedback informed this revision; a completed independent technical verification of the full ADR has not been recorded. Team review of the requirements mapping and proposed decision remains pending. No approval or completed implementation verification is implied.
