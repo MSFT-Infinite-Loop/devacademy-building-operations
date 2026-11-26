@@ -18,7 +18,6 @@ The official DevAcademy requirements remain the conflict-resolution authority.
 
 ## Architecture and specifications
 
-- [ADR-001: Database engine, data model and persistence conventions (Proposed)](../ADR-Database-Engine-and-Data-Model.md)
 - [ADR template](templates/adr-template.md)
 - [Feature specification template](templates/feature-spec-template.md)
 
