@@ -6,7 +6,7 @@
 - **Requirement IDs:** ARC-07, ARC-09, BE-C08, BE-C09, BE-C10, M7-01, BE-A03, BE-A04, BE-A05, BE-A06, FE-A03, M3-06, M4-10, M4-11, M5-08, M6-02, M6-04, M6-05, SEC-03, M1-05, M1-06, ARC-10, AI-06
 - **Supersedes:** None
 - **Superseded by:** None
-- **Depends on:** application architecture ADR (proposed: seven modules M1 to M7, module-led workflows, shared audit and outbox mechanics), database ADR (proposed: PostgreSQL; relevant points: row locking, unique constraints, transaction behaviour), caching ADR (Valkey is reused as the backplane), authn/authz ADR (cookie session, deactivation, Next.js topology), hosting ADR (ADR-001, proposed: Azure Container Apps and Azure Container Registry; relevant points: instance count, reverse proxy, sticky sessions), frontend ADR (proposed: Next.js with targeted refreshes; FE-A03 client behaviour)
+- **Depends on:** application architecture ADR (proposed: seven modules M1 to M7, module-led workflows, shared audit and outbox mechanics), database ADR (proposed: PostgreSQL; relevant points: row locking, unique constraints, transaction behaviour), caching ADR (Valkey is reused as the backplane), authn/authz ADR (cookie session, deactivation, Next.js topology), hosting ADR (ADR-001, [#19](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/pull/19), proposed: Azure Container Apps and Azure Container Registry; relevant points: instance count including at least one always-running API replica, reverse proxy, sticky sessions), frontend ADR (proposed: Next.js with targeted refreshes; FE-A03 client behaviour)
 
 ## Context
 
@@ -110,7 +110,7 @@ Also relevant: BE-C10 (graceful shutdown, structured logs with correlation IDs),
 
 1. Jobs and the outbox dispatcher run inside the API host as `BackgroundService`s. Job logic lives in plain classes that do not depend on the host, so it can move to a worker container later. Revisit A2 if measurements or the hosting ADR require it.
    - **Module ownership:** following the application architecture draft (the module that owns the outcome leads the workflow), each job's code lives in its owning module: M3 (lease jobs), M4 (SLA escalation, auto-close), M5 (overdue statements) and M6 (announcement publish and expiry). The scheduler, lease, outbox and audit mechanics are shared infrastructure, not business logic. M6 creates the inbox notification after commit, as a consumer of the outbox.
-   - **Instances:** the hosting ADR proposes Azure Container Apps, which can run several replicas. Leases and idempotence keep job runs safe, and the sticky-session or WebSockets-only rule for SignalR applies when more than one replica runs.
+   - **Instances:** the hosting ADR ([#19](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/pull/19), proposed) uses Azure Container Apps, which can run several replicas. **Dependency on the hosting ADR:** because jobs and the outbox dispatcher run inside the API, at least one API replica must keep running when there is no traffic; scale-to-zero would stop scheduled jobs and outbox delivery. The hosting draft already proposes this (API minimum replicas: 1). Leases and idempotence keep job runs safe, and the sticky-session or WebSockets-only rule for SignalR applies when more than one replica runs.
 2. Hosted services are singletons, so each run or batch creates its own DI scope (or uses a `DbContext` factory). Cancellation from the stopping token is treated as normal shutdown; only unexpected failures are logged and retried. Each loop body catches and logs exceptions, so one failing job does not stop the others. The host behaviour on an unhandled exception is confirmed during implementation.
 3. **Schedule rules:** every job has a documented interval, initial-run behaviour, maximum tolerated delay and restart catch-up rule (a job that was missed while the host was down runs on start). `PeriodicTimer` gives no cron or misfire semantics, so these rules are explicit. All stored and compared times are UTC; scheduled user input (announcement publish and expiry) is converted to UTC before it is stored. Jobs use an injected `TimeProvider`, so time rules are tested with a fake clock.
 4. **Run history:** a `job_runs` record (job name, start, end, outcome, counts, correlation ID) gives "last run and outcome" and feeds a read-only admin view. It is operational history only, **not** the audit trail.
@@ -179,6 +179,7 @@ Also relevant: BE-C10 (graceful shutdown, structured logs with correlation IDs),
 5. Revisit A2 (worker container) at the first scale or shutdown problem, or if the hosting ADR requires it.
 6. Confirm the exact job list and rules against the final M3, M4, M5 and M6 requirements and the Core feature specs. The M3-06 and M4-10 key designs above are proposed readings, not confirmed.
 7. Agree metric ownership (work-order, billing and caching modules) so BE-A06's three custom metrics are all delivered.
+8. Keep the hosting ADR's API minimum replica count at 1 or more while jobs run in the API host, and verify during implementation that a scheduled job and the outbox dispatcher still run with no incoming traffic (**not yet done**).
 
 ## Evidence and verification
 
