@@ -50,6 +50,14 @@ Each owner is the primary author for their packages. Once approved, mirror the a
 - Bring unresolved cross-track disagreements to the team. An ordinary cross-track decision needs three of four votes to pass. If it does not reach that threshold, leave it open and revisit it at the next sync. Record the rationale and any dissent in the notes.
 - Adopt or amend this charter through a GitHub PR with explicit, dated agreement from all four members. The PR author can record their agreement without approving their own PR. The ordinary voting rule does not replace charter sign-off.
 
+## Repository visibility and governance
+
+The central monorepo is public under the [D-35 exception](decision-register.md#d-35-public-repository-exception) to the private-repository clauses of GIT-01 and OPS-C01. Alexandru-Razvan Olariu approved the change in the 20 November 2026 meeting, as reported by Carlos on 27 November; a public-safe written approval reference remains pending. This exception does not approve this charter or waive other requirements.
+
+Public visibility makes GitHub Free code-owner review requests and branch protection available; it does not configure them. Complete and verify the [GIT-06 protections](../capstone-spec/14-process-git-planning.md#3-branch-model-and-mandatory-branch-protection) through [issue #4](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/issues/4), and mirror package assignments in CODEOWNERS only after charter approval. Passing required CI and the review rules below remain mandatory.
+
+Public content must contain only synthetic application data and no secrets, private communications, or personal contact details. Do not publish the official requirements document or unapproved third-party material. Verify secret scanning and push protection, and retain actual full-history scan evidence in [issue #17](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/issues/17); availability of a scanner is not evidence of a clean history.
+
 ## Pull requests and reviews
 
 | PR | Merge method | Minimum non-author approvals |

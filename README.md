@@ -1,6 +1,8 @@
 # DevAcademy Building Operations
 
-Private monorepo for the DevAcademy 2026-2027 Building Operations Platform capstone.
+Public monorepo for the DevAcademy 2026-2027 Building Operations Platform capstone.
+
+Public visibility follows the approved exception to the private-repository clauses of GIT-01 and OPS-C01 recorded in [decision D-35](docs/team/decision-register.md#d-35-public-repository-exception). Branch protection, CODEOWNERS, CI, and security evidence still require implementation and verification; public visibility does not approve the Team Charter or other open decisions.
 
 ## Status
 
