@@ -18,10 +18,11 @@ The official DevAcademy requirements remain the conflict-resolution authority.
 
 ## Architecture and specifications
 
+- [ADR-00N: Database engine, data model and persistence conventions (Proposed)](adr/ADR-Database-Engine-and-Data-Model.md)
 - [ADR template](templates/adr-template.md)
 - [Feature specification template](templates/feature-spec-template.md)
 
-Accepted ADRs will live in `docs/adr/`. Feature specifications will live in `docs/specs/`.
+All ADRs, including proposed drafts, live in `docs/adr/`. Feature specifications will live in `docs/specs/`.
 
 ## AI-assisted engineering
 
