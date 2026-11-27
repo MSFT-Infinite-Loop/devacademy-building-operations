@@ -124,13 +124,15 @@ This does not replace OPS-C04 local development: the full stack remains runnable
   - deploy candidate revision to Release,
   - run smoke tests before promoting traffic.
 
-### Release approval model on GitHub Free private repo
+### Release approval model on GitHub Free public repository
 
-Because GitHub environment required-reviewer gates are not available for private repos on Free plan, Release approval is implemented as:
+The repository is now public under the visibility exception recorded in [Charter/governance PR #30](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/pull/30). GitHub Free public repositories support environment required reviewers, so the former private-repository feature limitation no longer applies. This ADR remains Proposed, and its proposed Release approval model is unchanged:
 
 - mandatory release PR approvals per branch policy,
 - manual `workflow_dispatch` release deployment run initiated by the release captain after PR merge,
 - deployment run references the approved release PR and tag in logs/release notes.
+
+Adding an environment required-reviewer gate remains a separate unresolved team decision and must be configured and verified explicitly. Public visibility alone does not enable or prove a deployment approval gate.
 
 ### Per-PR preview model (OPS-A02)
 
@@ -199,6 +201,8 @@ Primary sources used:
   - <https://azure.microsoft.com/pricing/details/storage/blobs/>
 - GitHub rulesets/plans documentation:
   - <https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets>.
+- GitHub environment required reviewers and public-repository availability:
+  - <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments#required-reviewers>.
 
 Not fully verified yet:
 
@@ -208,3 +212,5 @@ Not fully verified yet:
 ## AI assistance
 
 AI was used to structure alternatives and draft wording. The author reviewed requirement mapping, corrected scope, and verified cited source categories before submission.
+
+GitHub Copilot subsequently corrected the visibility-dependent approval rationale against current GitHub documentation and the reported visibility approval. The hosting choices, proposed release mechanism, and Proposed status were preserved.
