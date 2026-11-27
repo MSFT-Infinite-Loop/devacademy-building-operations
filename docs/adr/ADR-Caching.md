@@ -22,7 +22,7 @@
 - OPS-C04 requires the one-command stack to start "database, cache and seed data included", which a real cache service now satisfies.
 - Redis is not allowed. Licence policy (ARC-10): Valkey is BSD-3; Memcached is BSD; Dragonfly is BSL 1.1, an approved exception only when self-hosted, unmodified and used as the application cache.
 - Cached data must never leak across buildings, roles or users (SEC-03).
-- The frontend draft (Next.js, server-first) adds its own cache layers (browser, Next.js server, FE-A02). They are separate from this API cache: no keys are shared, and the API sends `Cache-Control: no-store` on authenticated responses (see the API style ADR) so the Next.js data cache cannot share personalised responses.
+- The frontend draft (Next.js, server-first) adds its own cache layers (browser, Next.js server, FE-A02). They are separate from this API cache: no keys are shared. The API sends `Cache-Control: no-store` on authenticated responses (see the API style ADR), which tells HTTP caches not to store the API response; it does not control what Next.js caches when it renders a page. **Next.js must not store personalised data or views in a shared cache** (for example, a shared My Notifications view could show one resident's notifications to the next). How that is enforced belongs to the frontend ADR, which already states the same rule; this ADR covers only what the API caches internally with HybridCache and Valkey.
 
 ## Decision drivers
 
@@ -109,6 +109,7 @@
 3. Verify during implementation (**not yet done**): a hit, a miss, invalidation after a write, no cross-building leakage, and L2 failure fallback.
 4. Plan the load test and the pool-exhaustion scenario with the database ADR owner.
 5. Agree with the hosting ADR where Valkey runs in the hosted Preview and Release environments (a Valkey container; Redis-based managed services are not allowed).
+6. Confirm with the frontend ADR how Next.js is kept from storing personalised data or views in a shared cache, and verify it during implementation with a two-user check on a personalised page (**not yet done**).
 
 ## Evidence and verification
 
