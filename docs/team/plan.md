@@ -8,7 +8,7 @@
 - **Release day:** Thursday. **Targets:** `v0.1.0` on 10 December 2026 and `v1.0.0` on 21 January 2027, both conditional on passing release checks.
 - **Submission:** End of official Week 12 (18-24 January 2027 if weeks run consecutively). Aim to submit by 22 January; the exact cutoff time and time zone still need confirmation. No break, waiver, or extension is assumed.
 
-The [working specification](../capstone-spec/README.md) guides this plan; the official DevAcademy requirements take precedence. This draft reflects the 27 November [Team Charter](charter.md) discussions tracked in [#2](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/issues/2). It does not record approval of the Charter, plan, or any architecture choice.
+The [working specification](../capstone-spec/README.md) guides this plan; the official DevAcademy requirements take precedence. This draft reflects the 27 November [Team Charter proposal (PR #30)](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/pull/30), tracked in [#2](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/issues/2). It does not record approval of the Charter, plan, or any architecture choice.
 
 ## Status on 27 November
 
@@ -25,7 +25,7 @@ Deliver M1-M7, both signature scenarios as automated end-to-end tests on Release
 | Data | George Neagoe | Data model, migrations, synthetic seed, integrity constraints, reporting, historical queries, performance and restore evidence. Depends on API use cases and CI migration checks. |
 | DevOps | Didier Gbenou | Branch policies, CI, containers, image publishing, scans, hosted environments, release and rollback automation, monitoring, and runbook. Depends on runnable artifacts and documented health and migration behavior. |
 
-These are package assignments, not assignments to lead a cross-track milestone, risk, or escalation. Record the approved assignments in the Charter and `CODEOWNERS`. Typical capacity is reported as about eight hours/week each for Carlos and Petar; George's and Didier's regular capacity and everyone's working windows still need confirmation. Confirm release and technical coverage in Teams without publishing personal scheduling details.
+These are package assignments, not assignments to lead a cross-track milestone, risk, or escalation. Record the approved assignments in the [Team Charter](charter.md) and `CODEOWNERS`. Frontend and Backend have reported weekly capacity in the Charter proposal; Data and DevOps capacity and everyone's working windows still need confirmation. Confirm release and technical coverage in Teams without publishing personal scheduling details.
 
 ## Open pull requests into `preview`
 
@@ -33,6 +33,7 @@ This is the review snapshot for 27 November, not the accepted stack. Record acce
 
 | Decision or workflow | PR | What is proposed or in review |
 |---|---|---|
+| Team Charter | [#30](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/pull/30) | Draft work agreements, package assignments, daily meetings, and Thursday captain rotation. Capacity, coverage, journal locations, and four sign-offs remain open. |
 | Frontend framework | [#26](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/pull/26) | Next.js 16+ App Router, React 19.2+, and strict TypeScript. |
 | Application boundaries | [#27](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/pull/27) | Seven logical modules in a modular monolith, not seven services. |
 | API style and conventions | [#20](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/pull/20) | Versioned ASP.NET Core Minimal APIs by module and shared error conventions. GitHub shows an approving review; the PR is open and the ADR still says Proposed. |
@@ -87,7 +88,7 @@ The checkpoints are proposed review dates, not promises. The team must confirm n
 
 - **Meetings:** The team meets every morning from **10:30 to 11:30 GMT**. Keep one dated notes file per weekly check-in under `docs/team/meetings/` with decisions, risks, blockers, owners, dates, and agreed captain swaps.
 - **PRs and releases:** Short-lived branch to `preview`: squash merge, one non-author approval. Weekly `preview` to `main`: merge commit, two non-author approvals, no rebase merges. Both require passing CI. The captain uses the [weekly release PR template](../../.github/PULL_REQUEST_TEMPLATE/release.md) to report what shipped versus this plan, what slipped and why, and to link checks, images, smoke evidence, and the rollback plan.
-- **Individual evidence:** Record real work through [#10](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/issues/10). Each person needs at least 40 evidenced hours, one merge and one cross-track review weekly, at least two authored major-feature specs before AI-assisted implementation, one authored ADR, and a weekly AI Engineering Journal with at least ten entries and three genuine failure analyses. Do not infer effort, reviews, or journal entries.
+- **Individual evidence:** Record real work through [#10](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/issues/10) and agree on journal locations during Charter review. Each person needs at least 40 evidenced hours, one merge and one cross-track review weekly, at least two authored major-feature specs before AI-assisted implementation, one authored ADR, and a weekly AI Engineering Journal with at least ten entries and three genuine failure analyses. Do not infer effort, reviews, or journal entries.
 - **Approval and changes:** The plan coordinator and cross-track action owners are **TBD**. Record all four dated sign-offs before calling the plan approved. For each material change, record the old and new target, reason, consequences, follow-up owner, and decision date in the weekly notes and plan PR. A team approval cannot change official DevAcademy deadlines or requirements.
 
 | Date | What changed | Approval status |
