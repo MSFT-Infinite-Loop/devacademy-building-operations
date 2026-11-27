@@ -1,10 +1,10 @@
 # Team decision register
 
 - **Status:** Active
-- **Last updated:** 2026-11-23
+- **Last updated:** 2026-11-27
 - **Purpose:** Canonical record of live team decisions, proposals, and unresolved choices
 
-The official DevAcademy requirements define the allowed and mandatory boundaries. This register records the team's choices within those boundaries.
+The official DevAcademy requirements define the allowed and mandatory boundaries. This register records the team's choices and explicitly approved program exceptions without rewriting the static requirements.
 
 ## Status definitions
 
@@ -22,7 +22,7 @@ Do not treat a provisional or open entry as approved.
 | D-01 | Team size and members | Decided | Four members: Carlos Natera, Didier Gbenou, Petar Ivanov, and George Neagoe (`geneagoedev`) | `docs/team/charter.md` and organization membership |
 | D-02 | Core and Advanced package ownership | Open | TBD | GitHub issue #2 |
 | D-03 | Advanced package scope | Decided | Four-person scope requires FE Advanced, BE Advanced, DB Advanced, and OPS Advanced | 05 §3 and GitHub issue #2 |
-| D-04 | Repository and board host | Decided | Private GitHub organization `MSFT-Infinite-Loop`, organization repository, and organization Project | GitHub issue #4 |
+| D-04 | Repository and board host | Decided | GitHub organization `MSFT-Infinite-Loop`, organization repository, and organization Project; repository visibility is governed by D-35 | GitHub issue #4; D-35 supersedes the original private-repository position |
 | D-05 | Product name and branding | Provisional | `Infinite Loop Building Operations Platform` | Confirm in the Team Charter |
 | D-06 | Frontend framework | Open | Next.js 16+ or TanStack Start 1.x | Frontend ADR |
 | D-07 | API style | Open | Controllers or Minimal APIs | API-style ADR |
@@ -53,6 +53,15 @@ Do not treat a provisional or open entry as approved.
 | D-32 | Stale pack status snapshots | Decided | Remove team-specific snapshot statements from the imported pack and direct readers to the canonical team decision register | Pack-import review |
 | D-33 | Weekly release PR template | Decided | Maintain the canonical release PR template at `.github/PULL_REQUEST_TEMPLATE/release.md` for GitHub-prefilled `preview` to `main` release PRs | Pack-import review |
 | D-34 | Requirements-pack row integrity | Decided | Preserve all 234 validated requirement rows exactly during import; adapt only surrounding guidance and repository integration material | Pack-import review |
+| D-35 | Public repository visibility exception | Decided | Public central monorepo to use GitHub Free public-repository governance features; exception covers only the private-repository clauses of GIT-01 and OPS-C01 | Alexandru-Razvan Olariu's meeting approval on 2026-11-20, reported by Carlos on 2026-11-27; written reference TBD; see below |
+
+## D-35: Public repository exception
+
+- **Approval and evidence:** Carlos reported on 2026-11-27 that Alexandru-Razvan Olariu approved public visibility in the team meeting on 2026-11-20 ("last Friday"). No written approval reference was supplied. Record a public-safe confirmation or meeting-note reference in [issue #4](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/issues/4); that evidence remains pending.
+- **Reason:** GitHub Free public repositories support [code-owner review requests](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners) and [protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches), unlike Free private repositories. A CODEOWNERS file alone does not enforce approval.
+- **Verified on 2026-11-27:** GitHub reports this repository public, with an active `main` ruleset and `preview` unprotected. CODEOWNERS is absent on `preview`; required PR build/test status checks and Actions-run evidence are still missing. Secret-scanning and push-protection settings have not been verified.
+- **Follow-up:** Complete and verify [GIT-06 protections](../capstone-spec/14-process-git-planning.md#3-branch-model-and-mandatory-branch-protection) and approved CODEOWNERS assignments through issue #4, required CI through [issue #9](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/issues/9), and public-content review plus full-history secret-scan evidence through [issue #17](https://github.com/MSFT-Infinite-Loop/devacademy-building-operations/issues/17).
+- **Limits:** Only repository visibility is excepted. Jury access, review and release rules, security/privacy, and all other requirements remain in force. This does not approve the Charter, plan, or ADRs, or grant redistribution permission for the official requirements document or third-party material. Keep private communications, contact details, and secrets out of public content; application data must remain synthetic.
 
 ## Maintenance
 

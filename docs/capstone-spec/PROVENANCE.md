@@ -12,9 +12,11 @@ The official DevAcademy capstone requirements remain the ultimate authority. If 
 - **Version:** 1.4
 - **Date:** 2026-11-02
 - **Status:** Latest official source confirmed by the team
-- **Repository inclusion:** The derived pack is approved for this private team repository
+- **Repository inclusion:** Initially approved for the private team repository; current public visibility is recorded in [decision D-35](../team/decision-register.md#d-35-public-repository-exception)
 
 The official source itself is not replaced by this derived pack.
+
+The repository-visibility exception does not change the v1.4 requirements or grant separate permission to redistribute the official source document or other third-party material. The official document remains in its approved external location.
 
 ## Derived pack
 
